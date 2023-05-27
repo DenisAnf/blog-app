@@ -1,0 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Manrope:700);
+
+$fontfamily: "Manrope", sans-serif;
+
+@import "_nullstyle";
+
+body {
+	width: 100%;
+	background-color: #F5F5F5;
+	font-family: $fontfamily;
+	font-weight: 700;
+}
+
+.page {
+	height: 100%;
+}
+
