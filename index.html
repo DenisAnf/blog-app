@@ -10,17 +10,98 @@
 	<meta name="Address" content="Санкт-Петербург">
 
 	<link rel="stylesheet" href="styles/style.css">
-	<title>Счетчик тренировок</title>
-	<link rel="shortcut icon" href="resourses/img/icon/favicon.ico"/>
+	<title>Простой блог</title>
+	<link rel="shortcut icon" href="/resourses/img/icon/favicon.ico"/>
 </head>
 <body>
-	<header class="header"></header>
+	<header class="header">
+		<div class="container">
+			<h1 class="header__title">
+				Просто БЛОГ
+			</h1>
+		</div>
+		
+	</header>
 
 	<main class="page">
-		
+		<section class="new-post">
+			<div class="container">
+				<div class="new-post__wrapper">
+					<h2 class="new-post__title">
+						Новый пост
+					</h2>
+					<form action="" class="new-post__form">
+						<div class="input">
+							<input type="text" name="name" placeholder="Заголовок поста" class="input__title">
+							<textarea name="" id="" class="input__discription" placeholder="Напиши пост"></textarea>
+						</div>
+						<button type="reset" class="new-post__button-reset">Очистить</button>
+					</form>
+					<button type="submit" class="new-post__button-submit">Опубликовать</button>
+				</div>
+			</div>
+		</section>
+
+		<section class="feed">
+			<div class="container">
+				<div class="feed__wrapper">
+					<h2 class="feed__title">
+						Лента
+					</h2>
+					<div class="post__wrapper">
+						<div class="post">
+							<p class="post__date">20.05.2023 11:00</p>
+							<p class="post__title">Привет Мир</p>
+							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+						</div>
+						<div class="post">
+							<p class="post__date">21.05.2023 11:00</p>
+							<p class="post__title">Привет Мир</p>
+							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+						</div>
+						<div class="post">
+							<p class="post__date">22.05.2023 11:00</p>
+							<p class="post__title">Привет Мир</p>
+							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+						</div>
+						<div class="post">
+							<p class="post__date">23.05.2023 11:00</p>
+							<p class="post__title">Привет Мир</p>
+							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+						</div>
+						<div class="post">
+							<p class="post__date">24.05.2023 11:00</p>
+							<p class="post__title">Привет Мир</p>
+							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+						</div>
+						<div class="post">
+							<p class="post__date">25.05.2023 11:00</p>
+							<p class="post__title">Привет Мир</p>
+							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="contacts" id="contacts">
+			<div class="container">
+				<div class="contacts__title">
+					Контакты
+				</div>
+					<div class="contact__mail">
+						<a target="_blank" href="https://t.me/Denis_Bear_A">@Denis_Bear_A</a>
+					</div>
+				</div>
+			</div>
+		</section>
 	</main>
 
-	<footer class="footer"></footer>
+	<footer class="footer">
+		<div class="footer__cr">
+			SC.CODE / Denis A — 2023
+		</div>
+	</footer>
 	
 	<script src="js/index.js"></script>
 </body>
