@@ -109,6 +109,13 @@ body {
   font-size: 40px;
   line-height: 48px;
 }
+.input__title {
+  display: block;
+}
+.input__discription {
+  display: block;
+}
+
 .feed__title {
   font-weight: 700;
   font-size: 40px;
