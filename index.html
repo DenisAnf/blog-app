@@ -32,14 +32,19 @@
 					</h2>
 					<form action="" class="new-post__form">
 						<div class="input">
-							<input type="text" name="name" placeholder="Напиши заголовок поста" class="input__title">
-							<textarea name="" id="" class="input__discription" placeholder="Напиши пост"></textarea>
-						</div>
-						<div class="button">
-							<button type="reset" class="button__reset">Очистить</button>
-							<button type="submit" class="button__submit">Опубликовать</button>
+							<input id="inputTitle" type="text" name="title" placeholder="Напиши заголовок поста" class="input__title" required tabindex="1">
+							<p id="inputTitleLengthCounter" class="input__title-length">0 из 100</p>
+							<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши пост" required tabindex="2"></textarea>
+							<p id="inputDiscriptionLengthCounter" class="input__discription-length">0 из 200</p>
 						</div>
 					</form>
+					<div id="error" class="new-post__error">
+						<!--Количество символов не должно превышать 100-->
+					</div>
+					<div class="button">
+						<button id="buttonReset" type="reset" class="button__reset" tabindex="3">Очистить</button>
+						<button id="buttonSubmit" type="submit" class="button__submit" tabindex="4">Опубликовать</button>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -50,37 +55,8 @@
 					<h2 class="feed__title title">
 						Лента
 					</h2>
-					<div class="posts__wrapper">
-						<div class="post">
-							<p class="post__date">20.05.2023 11:00</p>
-							<p class="post__title">Привет Мир</p>
-							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
-						</div>
-						<div class="post">
-							<p class="post__date">21.05.2023 11:00</p>
-							<p class="post__title">Привет Мир</p>
-							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
-						</div>
-						<div class="post">
-							<p class="post__date">22.05.2023 11:00</p>
-							<p class="post__title">Привет Мир</p>
-							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
-						</div>
-						<div class="post">
-							<p class="post__date">23.05.2023 11:00</p>
-							<p class="post__title">Привет Мир</p>
-							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
-						</div>
-						<div class="post">
-							<p class="post__date">24.05.2023 11:00</p>
-							<p class="post__title">Привет Мир</p>
-							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
-						</div>
-						<div class="post">
-							<p class="post__date">25.05.2023 11:00</p>
-							<p class="post__title">Привет Мир</p>
-							<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
-						</div>
+					<div id="feed" class="posts__wrapper">
+						Пока постов не было...
 					</div>
 				</div>
 			</div>
@@ -96,6 +72,12 @@
 		</div>
 	</footer>
 	
+	<!--<div class="post">
+			<p class="post__date">20.05.2023 11:00</p>
+			<p class="post__title">Привет Мир</p>
+			<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+		</div>-->
+
 	<script src="js/index.js"></script>
 </body>
 </html>
