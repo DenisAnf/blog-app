@@ -1,11 +1,28 @@
-const titleValue = document.querySelector('#inputTitle');
-console.log(titleValue)
-const buttonSubmit = document.querySelector('#buttonSubmit');
+//определение поста
+const postTitleNode = document.querySelector('#inputTitle');
+const postDiscriptionNode = document.querySelector('#inputDiscription');
 
-const feed = document.querySelector('#feed');
+//определение кнопок
+const submitButton = document.querySelector('#buttonSubmit');
+const resetButton = document.querySelector('#buttonReset');
 
-const TITLE_MAX_VALUE = 10;
+//определение места вывода постов
+const postsFeed = document.querySelector('#feed');
 
-buttonSubmit.addEventListener('click', function () {
-	feed.innerText = titleValue;
+//определение места вывода счетчиков символов
+const postTitleLengthCounter = document.querySelector('#inputTitleLengthCounter');
+const postDiscriptionLengthCounter = document.querySelector('#inputDiscriptionLengthCounter');
+
+//определение места вывода собщения о превышении лимита символов
+const postLengthError = document.querySelector('#error');
+
+//указание лимитов на количество символов в посте
+const TITLE_MAX_LENGTH_VALUE = 10;
+const DISCRIPRION_MAX_LENGTH_VALUE = 10;
+
+//указание пустого массива для ленты постов
+let feed = [];
+
+submitButton.addEventListener('click', function () {
+	postsFeed.innerText = `${postTitleNode.value} ${postDiscriptionNode.value}`;
 });

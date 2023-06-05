@@ -15,49 +15,42 @@
 </head>
 <body>
 	<header class="header">
-		<div class="container">
-			<h1 class="header__title">
-				Просто БЛОГ
-			</h1>
-		</div>
-		
+		<h1 class="header__title">
+			Просто БЛОГ
+		</h1>
 	</header>
 
 	<main class="page">
 		<section class="new-post">
-			<div class="container">
-				<div class="new-post__wrapper">
-					<h2 class="new-post__title title">
-						Новый пост
-					</h2>
-					<form action="" class="new-post__form">
-						<div class="input">
-							<input id="inputTitle" type="text" name="title" placeholder="Напиши заголовок поста" class="input__title" required tabindex="1">
-							<p id="inputTitleLengthCounter" class="input__title-length">0 из 100</p>
-							<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши пост" required tabindex="2"></textarea>
-							<p id="inputDiscriptionLengthCounter" class="input__discription-length">0 из 200</p>
-						</div>
-					</form>
-					<div id="error" class="new-post__error">
-						<!--Количество символов не должно превышать 100-->
+			<div class="new-post__wrapper">
+				<h2 class="new-post__title title">
+					Новый пост
+				</h2>
+				<form action="" class="new-post__form">
+					<div class="input">
+						<input id="inputTitle" type="text" name="title" placeholder="Напиши заголовок поста" class="input__title" required tabindex="1">
+						<p id="inputTitleLengthCounter" class="input__title-length">0 из 100</p>
+						<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши пост" required tabindex="2"></textarea>
+						<p id="inputDiscriptionLengthCounter" class="input__discription-length">0 из 200</p>
 					</div>
-					<div class="button">
-						<button id="buttonReset" type="reset" class="button__reset" tabindex="3">Очистить</button>
-						<button id="buttonSubmit" type="submit" class="button__submit" tabindex="4">Опубликовать</button>
-					</div>
+				</form>
+				<div id="error" class="new-post__error">
+					<!--Количество символов не должно превышать 100-->
+				</div>
+				<div class="button">
+					<button id="buttonReset" type="reset" class="button__reset" tabindex="3">Очистить</button>
+					<button id="buttonSubmit" type="submit" class="button__submit" tabindex="4">Опубликовать</button>
 				</div>
 			</div>
 		</section>
 
 		<section class="feed">
-			<div class="container">
-				<div class="feed__wrapper">
-					<h2 class="feed__title title">
-						Лента
-					</h2>
-					<div id="feed" class="posts__wrapper">
-						Пока постов не было...
-					</div>
+			<div class="feed__wrapper">
+				<h2 class="feed__title title">
+					Лента
+				</h2>
+				<div id="feed" class="posts__wrapper">
+					Пока постов не было...
 				</div>
 			</div>
 		</section>
