@@ -88,12 +88,6 @@ function renderPosts() {
 	postsFeedPlace.innerHTML = showPostsHTML;
 }
 
-//функция очистки полей после добавления поста
-function clearPostPlace() {
-	postTitleNode.value = null;
-	postDiscriptionNode.value = null;
-}
-
 //функции вывода счетчиков символов
 function showPostTitleLengthCounter() {
 	postTitleLengthCounter.innerText = `Использовано ${postTitleNode.value.length} символов из ${TITLE_LENGTH_MAX_VALUE}`;
@@ -103,10 +97,28 @@ function showPostDiscriptionLengthCounter() {
 	postDiscriptionLengthCounter.innerText = `Использовано ${postDiscriptionNode.value.length} символов из ${DISCRIPRION_LENGTH_MAX_VALUE}`;
 }
 
-//функция очистки счетчика и предупреждения после добавления поста
+//функция очистки счетчика и предупреждения
 function clearPostLengthCounter() {
 	postTitleLengthCounter.innerText = null;
 	postDiscriptionLengthCounter.innerText = null;
+}
+
+//функция очистки полей
+function clearPostPlace() {
+	postTitleNode.value = null;
+	postDiscriptionNode.value = null;
+}
+
+//функция выключения кнопки отправить
+function disabledSubmitButton() {
+	submitButton.disabled = true;
+	submitButton.classList.add('button__disabled');
+}
+
+//функция включения кнопки отправить
+function unDisabledSubmitButton() {
+	submitButton.disabled = false;
+	submitButton.classList.remove('button__disabled');
 }
 
 //функция проверки пустого поста (сразу вызывается, чтобы по умолчанию заблокировать кнопку)
@@ -115,12 +127,10 @@ function checkLengthNull() {
 	const discriptionLength = postDiscriptionNode.value.length;
 
 	if (titleLength === 0 || discriptionLength === 0) {
-		submitButton.disabled = true;
-		submitButton.classList.add('button__disabled');
+		disabledSubmitButton();
 		return;
 	}
-	submitButton.disabled = false;
-	submitButton.classList.remove('button__disabled');
+	unDisabledSubmitButton();
 }
 checkLengthNull();
 
@@ -137,23 +147,20 @@ function checkLengthMax() {
 	////};
 
 	if (titleLength > TITLE_LENGTH_MAX_VALUE) {
-		submitButton.disabled = true;
-		submitButton.classList.add('button__disabled');
+		disabledSubmitButton();
 		////postTitleLengthCounter.classList.add('input__title-length_error');
 		postLengthError.innerText = `Длина заголовка не должна превышать ${TITLE_LENGTH_MAX_VALUE} символов`;
 		return;
 	};
 
 	if (discriptionLength > DISCRIPRION_LENGTH_MAX_VALUE) {
-		submitButton.disabled = true;
-		submitButton.classList.add('button__disabled');
+		disabledSubmitButton();
 		////postDiscriptionLengthCounter.classList.add('input__discription-length_error');
 		postLengthError.innerText = `Длина поста не должна превышать ${DISCRIPRION_LENGTH_MAX_VALUE} символов`;
 		return;
 	};
 
-	submitButton.disabled = false;
-	submitButton.classList.remove('button__disabled');
+	unDisabledSubmitButton();
 	////postTitleLengthCounter.classList.remove('input__title-length_error');
 	////postDiscriptionLengthCounter.classList.remove('input__discription-length_error');
 	postLengthError.innerText = null;
@@ -164,16 +171,16 @@ function checkLengthMax() {
 
 //Обработка кнопки добавления поста
 submitButton.addEventListener('click', function () {
-	////часть проверки на пустые поля
+	//проверка на пустые поля аналогично функции
 	const titleLength = postTitleNode.value.length;
 	const discriptionLength = postDiscriptionNode.value.length;
 	
 	if (titleLength === 0 || discriptionLength === 0) {
-		submitButton.disabled = true;
-		submitButton.classList.add('button__disabled');
+		disabledSubmitButton();
 		return;
 	};
 
+	//основное тело функции дбавления поста
 	const postFromUser = getPostFromUser();
 
 	addPost(postFromUser)
@@ -181,8 +188,8 @@ submitButton.addEventListener('click', function () {
 	clearPostPlace();
 	clearPostLengthCounter();
 
-	submitButton.disabled = true;
-	submitButton.classList.add('button__disabled');
+	//отключение кнопки после добавления поста
+	disabledSubmitButton();
 });
 
 //Обработка кнопки очистки полей поста
@@ -196,6 +203,6 @@ resetButton.addEventListener('click', function () {
 postTitleNode.addEventListener('input', showPostTitleLengthCounter);
 postDiscriptionNode.addEventListener('input', showPostDiscriptionLengthCounter);
 
-//Вывод предупреждения о длине поста + запрет на отправку слишком длинного и пустого поста
+//Вывод предупреждения о длине поста + запрет на отправку слишком длинного
 postTitleNode.addEventListener('input', checkLengthMax);
 postDiscriptionNode.addEventListener('input', checkLengthMax);
