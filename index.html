@@ -33,15 +33,14 @@
 						<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши пост" required tabindex="2"></textarea>
 						<label id="inputDiscriptionLengthCounter" class="input__discription-length"></label>
 					</div>
+					<div id="error" class="new-post__error"></div>
+					<div class="button">
+						<button id="buttonReset" type="reset" class="button__reset" tabindex="3">Очистить</button>
+						<button id="buttonSubmit" type="button" class="button__submit button__disabled" tabindex="4">Опубликовать</button>
+					</div>
+					</div>
 				</form>
-				<div id="error" class="new-post__error">
-					<!--Количество символов не должно превышать 100-->
-				</div>
-				<div class="button">
-					<button id="buttonReset" type="reset" class="button__reset" tabindex="3">Очистить</button>
-					<button id="buttonSubmit" type="submit" class="button__submit" tabindex="4">Опубликовать</button>
-				</div>
-			</div>
+				
 		</section>
 
 		<section class="feed">
