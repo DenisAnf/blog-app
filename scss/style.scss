@@ -43,8 +43,8 @@ body {
 .page {
 	display: flex;
 	flex-wrap: wrap;
-	align-items: flex-start;
 	justify-content: center;
+	align-items: flex-start;
 	gap: 20px 50px;
 	//height: 100%;
 	margin: 0 auto;
@@ -53,7 +53,8 @@ body {
 }
 
 .title {
-	margin-bottom: 25px;
+	margin-bottom: 15px;
+	padding-bottom: 10px;
 	font-weight: 700;
 	font-size: 32px;
 	line-height: 40px;
@@ -66,7 +67,7 @@ body {
 		background: linear-gradient(90deg, #e0ecf1, #e7e7e7) padding-box,
 			linear-gradient(90deg, #9ad0e6,#b3b1b1) border-box;
 		border: 5px solid transparent;
-		border-radius: 20px;
+		border-radius: 10px;
 		padding: 20px 25px;
 	}
 
@@ -78,6 +79,7 @@ body {
 
 	&__error {
 		margin-bottom: 20px;
+		height: 14px;
 		text-align: center;
 		font-size: 14px;
 		line-height: 14px;
@@ -109,6 +111,7 @@ body {
 	&__title-length {
 		display: block;
 		margin-bottom: 20px;
+		height: 14px;
 		text-align: right;
 		font-size: 10px;
 		line-height: 14px;
@@ -135,6 +138,7 @@ body {
 	&__discription-length {
 		display: block;
 		margin-bottom: 10px;
+		height: 14px;
 		text-align: right;
 		font-size: 10px;
 		line-height: 14px;
@@ -184,18 +188,47 @@ body {
 }
 
 .feed {
+	align-self: stretch;
 
 	&__wrapper {
+		position: relative;
 		width: min(500px, calc(100vw - 30px));
-		background: linear-gradient(90deg, #e0ecf1, #e7e7e7) padding-box,
-			linear-gradient(90deg, #9ad0e6, #b3b1b1) border-box;
+		height: 100%;
+		max-height: 507px;
+		background: linear-gradient(90deg, #e0ecf1, #e7e7e7) padding-box, linear-gradient(90deg, #9ad0e6, #b3b1b1) border-box;
 		border: 5px solid transparent;
-		border-radius: 20px;
-		padding: 20px 25px;
+		border-radius: 10px;
+		padding: 0 25px 20px;
+		overflow-y: auto;
+
+		//!настрокйка скролл-барра
+		//скроллбары в Chrome/Edge/Safari
+		&::-webkit-scrollbar {
+			width: 8px; /* ширина scrollbar */
+		}
+	
+		&::-webkit-scrollbar-track {
+			background: #9ad0e6; /* цвет дорожки */
+			border-radius: 50px; /* закругления дрожки */
+		}
+	
+		&::-webkit-scrollbar-thumb {
+			background-color: #b3b1b1; /* цвет плашки */
+			border-radius: 50px; /* закругления плашки */
+			border: 2px solid #9ad0e6; /* padding вокруг плашки */
+		}
+
+		//скроллбары в Fifefox	
+		scrollbar-width: thin; /* "auto" или "thin"  */
+		scrollbar-color: #b3b1b1 #9ad0e6; /* плашка скролла и дорожка */
+
 	}
 
 	&__title {
-		
+		position: sticky;
+		top: 0;
+		background: linear-gradient(90deg, #e0ecf1, #e7e7e7) padding-box, linear-gradient(90deg, #9ad0e6, #b3b1b1) border-box;
+		padding-top: 20px;
 	}
 }
 
