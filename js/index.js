@@ -17,8 +17,8 @@ const postDiscriptionLengthCounter = document.querySelector('#inputDiscriptionLe
 const postLengthError = document.querySelector('#error');
 
 //указание лимитов на количество символов в посте
-const TITLE_LENGTH_MAX_VALUE = 10;
-const DISCRIPRION_LENGTH_MAX_VALUE = 20;
+const TITLE_LENGTH_MAX_VALUE = 50;
+const DISCRIPRION_LENGTH_MAX_VALUE = 200;
 
 //указание пустого массива для ленты постов
 let feedPosts = [];
