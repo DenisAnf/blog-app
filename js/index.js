@@ -9,7 +9,9 @@ const resetButton = document.querySelector('#buttonReset');
 //определение места вывода постов
 const postsFeedPlace = document.querySelector('#feed');
 
-//определение места вывода счетчиков символов
+//определение места вывода счетчиков символов и предупреждений "напиши..."
+const postTitleError = document.querySelector('#inputTitleError');
+const postDiscriptionError = document.querySelector('#inputDiscriptionError');
 const postTitleLengthCounter = document.querySelector('#inputTitleLengthCounter');
 const postDiscriptionLengthCounter = document.querySelector('#inputDiscriptionLengthCounter');
 
@@ -66,7 +68,7 @@ function addPost(post) {
 
 //функция получения массива постов
 function getPostsFeed() {
-	return feedPosts.reverse();
+	return feedPosts;
 }
 
 //функция показа ленты постов из массива
@@ -88,25 +90,16 @@ function renderPosts() {
 	postsFeedPlace.innerHTML = showPostsHTML;
 }
 
-//функции вывода счетчиков символов
-function showPostTitleLengthCounter() {
-	postTitleLengthCounter.innerText = `Использовано ${postTitleNode.value.length} символов из ${TITLE_LENGTH_MAX_VALUE}`;
-}
-
-function showPostDiscriptionLengthCounter() {
-	postDiscriptionLengthCounter.innerText = `Использовано ${postDiscriptionNode.value.length} символов из ${DISCRIPRION_LENGTH_MAX_VALUE}`;
-}
-
-//функция очистки счетчика и предупреждения
-function clearPostLengthCounter() {
-	postTitleLengthCounter.innerText = null;
-	postDiscriptionLengthCounter.innerText = null;
-}
-
 //функция очистки полей
-function clearPostPlace() {
+function clearPost() {
 	postTitleNode.value = null;
 	postDiscriptionNode.value = null;
+	postTitleLengthCounter.innerText = null;
+	postDiscriptionLengthCounter.innerText = null;
+	postLengthError.innerText = null;
+	disabledSubmitButton();
+	postTitleError.innerText = '';
+	postDiscriptionError.innerText = '';
 }
 
 //функция выключения кнопки отправить
@@ -121,6 +114,15 @@ function unDisabledSubmitButton() {
 	submitButton.classList.remove('button__disabled');
 }
 
+//функции вывода счетчиков символов
+function showPostTitleLengthCounter() {
+	postTitleLengthCounter.innerText = `${postTitleNode.value.length} / ${TITLE_LENGTH_MAX_VALUE}`;
+}
+
+function showPostDiscriptionLengthCounter() {
+	postDiscriptionLengthCounter.innerText = `${postDiscriptionNode.value.length} / ${DISCRIPRION_LENGTH_MAX_VALUE}`;
+}
+
 //функция проверки пустого поста (сразу вызывается, чтобы по умолчанию заблокировать кнопку)
 function checkLengthNull() {
 	const titleLength = postTitleNode.value.length;
@@ -128,24 +130,25 @@ function checkLengthNull() {
 
 	if (titleLength === 0 || discriptionLength === 0) {
 		disabledSubmitButton();
+		postTitleNode.focus(); //фокус на поле заголовка при старте
 		return;
 	}
 	unDisabledSubmitButton();
-}
+};
 checkLengthNull();
 
 //функция проверки количества символов на превышение лимита
-function checkLengthMax() {
+function validation() {
 	const titleLength = postTitleNode.value.length;
 	const discriptionLength = postDiscriptionNode.value.length;
 
-	////часть проверки на пустые поля
-	////if (titleLength === 0 || discriptionLength === 0) {
-	////	submitButton.disabled = true;
-	////	submitButton.classList.add('button__disabled');
-	////	return;
-	////};
+	//константы для проверки на использование только пробелов
+	const titleWithoutSpace = postTitleNode.value.replace(/\s/g, '');
+	const titleLengthWithoutSpace = titleWithoutSpace.length;
+	const discriptionWithoutSpace = postDiscriptionNode.value.replace(/\s/g, '');
+	const discriptionLengthWithoutSpace = discriptionWithoutSpace.length;
 
+	//часть проверки на превышение лимита заголовка поста
 	if (titleLength > TITLE_LENGTH_MAX_VALUE) {
 		disabledSubmitButton();
 		////postTitleLengthCounter.classList.add('input__title-length_error');
@@ -153,6 +156,7 @@ function checkLengthMax() {
 		return;
 	};
 
+	//часть проверки на превышение лимита текста поста
 	if (discriptionLength > DISCRIPRION_LENGTH_MAX_VALUE) {
 		disabledSubmitButton();
 		////postDiscriptionLengthCounter.classList.add('input__discription-length_error');
@@ -160,49 +164,92 @@ function checkLengthMax() {
 		return;
 	};
 
+	postLengthError.innerText = null;
+
+	if (titleLength === 0 || titleLengthWithoutSpace === 0) {
+		postTitleError.innerText = 'Напиши загловок';
+		disabledSubmitButton();
+		return;
+	}
+	
+	postTitleError.innerText = '';
+
+	if (discriptionLength === 0 || discriptionLengthWithoutSpace === 0) {
+		postDiscriptionError.innerText = 'Напиши текст поста';
+		disabledSubmitButton();
+		return;
+	}
+	
+	postDiscriptionError.innerText = '';
+
+	//включение кнопки если все условия пройдены
 	unDisabledSubmitButton();
 	////postTitleLengthCounter.classList.remove('input__title-length_error');
 	////postDiscriptionLengthCounter.classList.remove('input__discription-length_error');
-	postLengthError.innerText = null;
 }
+
+//итоговая функция добавления поста
+function getPost() {
+	//основное тело функции добавления поста
+	const postFromUser = getPostFromUser();
+
+	addPost(postFromUser)
+	renderPosts();
+	clearPost();
+
+	//отключение кнопки после добавления поста
+	disabledSubmitButton();
+};
+
+//функция смены фокуса по Enter
+function transitionFocusByEnter(event) {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+
+		const inputs = document.querySelectorAll("input, textarea, button");
+
+		let inputsElement = Array.from(inputs).filter(function(element) {
+			return element.getAttribute("tabindex") !== null;
+		});
+		let currentInput = event.target;
+		let currentIndex = inputsElement.findIndex(function(element) {
+			return element === currentInput;
+		});
+
+		let nextIndex = ++currentIndex;
+		if (nextIndex < inputsElement.length) {
+			inputsElement[nextIndex].focus();
+		}
+  }
+};
+
+//функция отправки по Enter (обходит валидацию)
+/*function renderByEnter(event) {
+	if (event.keyCode === 13) {
+		event.preventDefault();
+
+		getPost();
+  }
+};*/
+
 
 
 //! ОБРАБОТЧИКИ ---------------------------------------------------
 
 //Обработка кнопки добавления поста
-submitButton.addEventListener('click', function () {
-	//проверка на пустые поля аналогично функции
-	const titleLength = postTitleNode.value.length;
-	const discriptionLength = postDiscriptionNode.value.length;
-	
-	if (titleLength === 0 || discriptionLength === 0) {
-		disabledSubmitButton();
-		return;
-	};
-
-	//основное тело функции дбавления поста
-	const postFromUser = getPostFromUser();
-
-	addPost(postFromUser)
-	renderPosts();
-	clearPostPlace();
-	clearPostLengthCounter();
-
-	//отключение кнопки после добавления поста
-	disabledSubmitButton();
-});
+submitButton.addEventListener('click', getPost);
 
 //Обработка кнопки очистки полей поста
-resetButton.addEventListener('click', function () {
-	clearPostPlace();
-	clearPostLengthCounter();
-	postLengthError.innerText = null;
-});
+resetButton.addEventListener('click', clearPost);
 
 //Вывод счетчиков сиволов
 postTitleNode.addEventListener('input', showPostTitleLengthCounter);
 postDiscriptionNode.addEventListener('input', showPostDiscriptionLengthCounter);
 
-//Вывод предупреждения о длине поста + запрет на отправку слишком длинного
-postTitleNode.addEventListener('input', checkLengthMax);
-postDiscriptionNode.addEventListener('input', checkLengthMax);
+//Вывод предупреждения о длине поста + запрет на отправку слишком длинного и пустого поста
+postTitleNode.addEventListener('input', validation);
+postDiscriptionNode.addEventListener('input', validation);
+
+//Переход по Enter с заголовка на поле теста поста
+postTitleNode.addEventListener("keydown", transitionFocusByEnter);
+////postDiscriptionNode.addEventListener("keydown", renderByEnter);

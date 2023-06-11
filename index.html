@@ -28,15 +28,21 @@
 				</h2>
 				<form action="" class="new-post__form">
 					<div class="input">
-						<input id="inputTitle" type="text" name="title" placeholder="Напиши заголовок поста" class="input__title" required tabindex="1">
-						<label id="inputTitleLengthCounter" class="input__title-length"></label>
-						<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши пост" required tabindex="2"></textarea>
-						<label id="inputDiscriptionLengthCounter" class="input__discription-length"></label>
+						<input id="inputTitle" type="text" name="title" placeholder="Напиши заголовок поста" class="input__title" tabindex="1">
+						<div class="input__title-notice">
+							<label id="inputTitleError" class="input__title-error"></label>
+							<label id="inputTitleLengthCounter" class="input__title-length"></label>
+						</div>
+						<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши текст поста" tabindex="2"></textarea>
+						<div class="input__discription-notice">
+							<label id="inputDiscriptionError" class="input__discription-error"></label>
+							<label id="inputDiscriptionLengthCounter" class="input__discription-length"></label>
+						</div>
 					</div>
 					<div id="error" class="new-post__error"></div>
 					<div class="button">
-						<button id="buttonReset" type="reset" class="button__reset" tabindex="3">Очистить</button>
-						<button id="buttonSubmit" type="button" class="button__submit button__disabled" tabindex="4">Опубликовать</button>
+						<button id="buttonReset" type="reset" class="button__reset" tabindex="4">Очистить</button>
+						<button id="buttonSubmit" type="button" class="button__submit button__disabled" tabindex="3">Опубликовать</button>
 					</div>
 					</div>
 				</form>
