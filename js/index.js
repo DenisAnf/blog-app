@@ -22,6 +22,10 @@ const postLengthError = document.querySelector('#error');
 const TITLE_LENGTH_MAX_VALUE = 50;
 const DISCRIPRION_LENGTH_MAX_VALUE = 200;
 
+//указание текстов предупреждений
+const TITLE_ERROR_TEXT = 'Напиши заголовок';
+const DISCRIPRION_ERROR_TEXT = 'Напиши текст поста';
+
 //указание пустого массива для ленты постов
 let feedPosts = [];
 
@@ -167,7 +171,7 @@ function validation() {
 	postLengthError.innerText = null;
 
 	if (titleLength === 0 || titleLengthWithoutSpace === 0) {
-		postTitleError.innerText = 'Напиши загловок';
+		postTitleError.innerText = TITLE_ERROR_TEXT;
 		disabledSubmitButton();
 		return;
 	}
@@ -175,7 +179,7 @@ function validation() {
 	postTitleError.innerText = '';
 
 	if (discriptionLength === 0 || discriptionLengthWithoutSpace === 0) {
-		postDiscriptionError.innerText = 'Напиши текст поста';
+		postDiscriptionError.innerText = DISCRIPRION_ERROR_TEXT;
 		disabledSubmitButton();
 		return;
 	}
