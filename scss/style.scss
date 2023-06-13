@@ -106,7 +106,7 @@ body {
 		border: 1px solid rgb(132, 155, 204);
 	}
 
-	&__discription {
+	&__description {
 		display: block;
 		width: 100%;
 		height: 210px;
@@ -120,12 +120,12 @@ body {
 		line-height: 28px;
 	}
 
-	&__discription:focus {
+	&__description:focus {
 		border: 1px solid rgb(132, 155, 204);
 	}
 
 	&__title-notice,
-	&__discription-notice {
+	&__description-notice {
 		display: flex;
 		justify-content: space-between;
 		margin-bottom: 14px;
@@ -133,8 +133,8 @@ body {
 
 	&__title-error,
 	&__title-length,
-	&__discription-error,
-	&__discription-length {
+	&__description-error,
+	&__description-length {
 		display: block;
 		height: 14px;
 		text-align: center;
@@ -143,12 +143,12 @@ body {
 	}
 
 	&__title-error,
-	&__discription-error {
+	&__description-error {
 		color: rgb(44, 18, 189);
 	}
 
 	/*&__title-length_error,
-	&__discription-length_error {
+	&__description-length_error {
 		color: rgb(218, 19, 19);
 	}*/
 }
@@ -282,7 +282,7 @@ body {
 		line-height: 24px;
 	}
 
-	&__discription {
+	&__description {
 		margin-bottom: 10px;
 		word-wrap: break-word;
 		white-space: pre-line;

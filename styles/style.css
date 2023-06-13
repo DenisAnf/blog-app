@@ -147,7 +147,7 @@ body {
 
 .input {
   /*&__title-length_error,
-  &__discription-length_error {
+  &__description-length_error {
   	color: rgb(218, 19, 19);
   }*/
 }
@@ -166,7 +166,7 @@ body {
 .input__title:focus {
   border: 1px solid rgb(132, 155, 204);
 }
-.input__discription {
+.input__description {
   display: block;
   width: 100%;
   height: 210px;
@@ -179,22 +179,22 @@ body {
   font-size: 16px;
   line-height: 28px;
 }
-.input__discription:focus {
+.input__description:focus {
   border: 1px solid rgb(132, 155, 204);
 }
-.input__title-notice, .input__discription-notice {
+.input__title-notice, .input__description-notice {
   display: flex;
   justify-content: space-between;
   margin-bottom: 14px;
 }
-.input__title-error, .input__title-length, .input__discription-error, .input__discription-length {
+.input__title-error, .input__title-length, .input__description-error, .input__description-length {
   display: block;
   height: 14px;
   text-align: center;
   font-size: 10px;
   line-height: 14px;
 }
-.input__title-error, .input__discription-error {
+.input__title-error, .input__description-error {
   color: rgb(44, 18, 189);
 }
 
@@ -302,7 +302,7 @@ body {
   font-size: 18px;
   line-height: 24px;
 }
-.post__discription {
+.post__description {
   margin-bottom: 10px;
   word-wrap: break-word;
   white-space: pre-line;

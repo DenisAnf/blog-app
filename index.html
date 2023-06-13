@@ -28,15 +28,15 @@
 				</h2>
 				<form action="" class="new-post__form">
 					<div class="input">
-						<input id="inputTitle" type="text" name="title" placeholder="Напиши заголовок поста" class="input__title" tabindex="1">
+						<input id="inputTitle" name="title" type="text" placeholder="Напиши заголовок поста" class="input__title" tabindex="1">
 						<div class="input__title-notice">
-							<label id="inputTitleError" class="input__title-error"></label>
-							<label id="inputTitleLengthCounter" class="input__title-length"></label>
+							<label for="inputTitle" id="inputTitleError" class="input__title-error"></label>
+							<label for="inputTitle" id="inputTitleLengthCounter" class="input__title-length"></label>
 						</div>
-						<textarea name="discription" id="inputDiscription" class="input__discription" placeholder="Напиши текст поста" tabindex="2"></textarea>
-						<div class="input__discription-notice">
-							<label id="inputDiscriptionError" class="input__discription-error"></label>
-							<label id="inputDiscriptionLengthCounter" class="input__discription-length"></label>
+						<textarea name="description" id="inputDescription" class="input__description" placeholder="Напиши текст поста" tabindex="2"></textarea>
+						<div class="input__description-notice">
+							<label for="inputDescription" id="inputDescriptionError" class="input__description-error"></label>
+							<label for="inputDescription" id="inputDescriptionLengthCounter" class="input__description-length"></label>
 						</div>
 					</div>
 					<div id="error" class="new-post__error"></div>
@@ -73,7 +73,7 @@
 	<!--<div class="post">
 			<p class="post__date">20.05.2023 11:00</p>
 			<h3 class="post__title">Привет Мир</h3>
-			<p class="post__discription">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
+			<p class="post__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquet auctor iaculis. Aliquam viverra ultrices dui. Aenean dolor dolor, congue eget congue non, varius non urna.</p>
 		</div>-->
 
 	<script src="js/index.js"></script>

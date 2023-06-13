@@ -1,6 +1,6 @@
 //определение полей ввода поста
 const postTitleNode = document.querySelector('#inputTitle');
-const postDiscriptionNode = document.querySelector('#inputDiscription');
+const postDescriptionNode = document.querySelector('#inputDescription');
 
 //определение кнопок
 const submitButton = document.querySelector('#buttonSubmit');
@@ -11,9 +11,9 @@ const postsFeedPlace = document.querySelector('#feed');
 
 //определение места вывода счетчиков символов и предупреждений "напиши..."
 const postTitleError = document.querySelector('#inputTitleError');
-const postDiscriptionError = document.querySelector('#inputDiscriptionError');
+const postDescriptionError = document.querySelector('#inputDescriptionError');
 const postTitleLengthCounter = document.querySelector('#inputTitleLengthCounter');
-const postDiscriptionLengthCounter = document.querySelector('#inputDiscriptionLengthCounter');
+const postDescriptionLengthCounter = document.querySelector('#inputDescriptionLengthCounter');
 
 //определение места вывода собщения о превышении лимита символов
 const postLengthError = document.querySelector('#error');
@@ -48,19 +48,19 @@ function getCurrentDate() {
 }
 
 //функция-конструктор поста
-function Post(time, title, discription) {
+function Post(time, title, description) {
 	this.time = time;
 	this.title = title;
-	this.discription = discription;
+	this.description = description;
 }
 
 //функция получения поста
 function getPostFromUser() {
 	const timePost = getCurrentDate();
 	const titlePost = postTitleNode.value;
-	const discriptionPost = postDiscriptionNode.value;
+	const descriptionPost = postDescriptionNode.value;
 
-	const post = new Post(timePost, titlePost, discriptionPost);
+	const post = new Post(timePost, titlePost, descriptionPost);
 
 	return post;
 }
@@ -86,7 +86,7 @@ function renderPosts() {
 		<div class="post">
 			<p class="post__date">${showPostsFeed[i].time}</p> 
 			<h3 class="post__title">${showPostsFeed[i].title}</h3>
-			<p class="post__discription">${showPostsFeed[i].discription}</p>
+			<p class="post__description">${showPostsFeed[i].description}</p>
 		</div>
 		`;
 	}
@@ -97,13 +97,13 @@ function renderPosts() {
 //функция очистки полей
 function clearPost() {
 	postTitleNode.value = null;
-	postDiscriptionNode.value = null;
+	postDescriptionNode.value = null;
 	postTitleLengthCounter.innerText = null;
-	postDiscriptionLengthCounter.innerText = null;
+	postDescriptionLengthCounter.innerText = null;
 	postLengthError.innerText = null;
 	disabledSubmitButton();
 	postTitleError.innerText = '';
-	postDiscriptionError.innerText = '';
+	postDescriptionError.innerText = '';
 }
 
 //функция выключения кнопки отправить
@@ -123,16 +123,16 @@ function showPostTitleLengthCounter() {
 	postTitleLengthCounter.innerText = `${postTitleNode.value.length} / ${TITLE_LENGTH_MAX_VALUE}`;
 }
 
-function showPostDiscriptionLengthCounter() {
-	postDiscriptionLengthCounter.innerText = `${postDiscriptionNode.value.length} / ${DISCRIPRION_LENGTH_MAX_VALUE}`;
+function showPostDescriptionLengthCounter() {
+	postDescriptionLengthCounter.innerText = `${postDescriptionNode.value.length} / ${DISCRIPRION_LENGTH_MAX_VALUE}`;
 }
 
 //функция проверки пустого поста (сразу вызывается, чтобы по умолчанию заблокировать кнопку)
 function checkLengthNull() {
 	const titleLength = postTitleNode.value.length;
-	const discriptionLength = postDiscriptionNode.value.length;
+	const descriptionLength = postDescriptionNode.value.length;
 
-	if (titleLength === 0 || discriptionLength === 0) {
+	if (titleLength === 0 || descriptionLength === 0) {
 		disabledSubmitButton();
 		postTitleNode.focus(); //фокус на поле заголовка при старте
 		return;
@@ -144,13 +144,14 @@ checkLengthNull();
 //функция проверки количества символов на превышение лимита
 function validation() {
 	const titleLength = postTitleNode.value.length;
-	const discriptionLength = postDiscriptionNode.value.length;
+	const descriptionLength = postDescriptionNode.value.length;
 
 	//константы для проверки на использование только пробелов
-	const titleWithoutSpace = postTitleNode.value.replace(/\s/g, '');
+	const reg = /\s/g;
+	const titleWithoutSpace = postTitleNode.value.replace(reg, '');
 	const titleLengthWithoutSpace = titleWithoutSpace.length;
-	const discriptionWithoutSpace = postDiscriptionNode.value.replace(/\s/g, '');
-	const discriptionLengthWithoutSpace = discriptionWithoutSpace.length;
+	const descriptionWithoutSpace = postDescriptionNode.value.replace(reg, '');
+	const descriptionLengthWithoutSpace = descriptionWithoutSpace.length;
 
 	//часть проверки на превышение лимита заголовка поста
 	if (titleLength > TITLE_LENGTH_MAX_VALUE) {
@@ -161,9 +162,9 @@ function validation() {
 	};
 
 	//часть проверки на превышение лимита текста поста
-	if (discriptionLength > DISCRIPRION_LENGTH_MAX_VALUE) {
+	if (descriptionLength > DISCRIPRION_LENGTH_MAX_VALUE) {
 		disabledSubmitButton();
-		////postDiscriptionLengthCounter.classList.add('input__discription-length_error');
+		////postDescriptionLengthCounter.classList.add('input__description-length_error');
 		postLengthError.innerText = `Длина поста не должна превышать ${DISCRIPRION_LENGTH_MAX_VALUE} символов`;
 		return;
 	};
@@ -178,18 +179,18 @@ function validation() {
 	
 	postTitleError.innerText = '';
 
-	if (discriptionLength === 0 || discriptionLengthWithoutSpace === 0) {
-		postDiscriptionError.innerText = DISCRIPRION_ERROR_TEXT;
+	if (descriptionLength === 0 || descriptionLengthWithoutSpace === 0) {
+		postDescriptionError.innerText = DISCRIPRION_ERROR_TEXT;
 		disabledSubmitButton();
 		return;
 	}
 	
-	postDiscriptionError.innerText = '';
+	postDescriptionError.innerText = '';
 
 	//включение кнопки если все условия пройдены
 	unDisabledSubmitButton();
 	////postTitleLengthCounter.classList.remove('input__title-length_error');
-	////postDiscriptionLengthCounter.classList.remove('input__discription-length_error');
+	////postDescriptionLengthCounter.classList.remove('input__description-length_error');
 }
 
 //итоговая функция добавления поста
@@ -248,12 +249,12 @@ resetButton.addEventListener('click', clearPost);
 
 //Вывод счетчиков сиволов
 postTitleNode.addEventListener('input', showPostTitleLengthCounter);
-postDiscriptionNode.addEventListener('input', showPostDiscriptionLengthCounter);
+postDescriptionNode.addEventListener('input', showPostDescriptionLengthCounter);
 
 //Вывод предупреждения о длине поста + запрет на отправку слишком длинного и пустого поста
 postTitleNode.addEventListener('input', validation);
-postDiscriptionNode.addEventListener('input', validation);
+postDescriptionNode.addEventListener('input', validation);
 
 //Переход по Enter с заголовка на поле теста поста
 postTitleNode.addEventListener("keydown", transitionFocusByEnter);
-////postDiscriptionNode.addEventListener("keydown", renderByEnter);
+////postDescriptionNode.addEventListener("keydown", renderByEnter);
